@@ -8,6 +8,74 @@
    <meta name="description" content="">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.JPG">
+   <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+    }
+
+    .subpage-hero {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 16px;
+      margin: 24px;
+      background: linear-gradient(180deg, #0077ff, #0055aa);
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Wave layers */
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100px;
+      background-repeat: repeat-x;
+      background-size: 50% 100px;
+      opacity: 0.5;
+      animation: wave 10s linear infinite;
+    }
+
+    .wave1 {
+      background-image: radial-gradient(circle at 50% 40%, #33aaff 40%, transparent 60%);
+      animation-duration: 12s;
+      bottom: 0;
+    }
+
+    .wave2 {
+      background-image: radial-gradient(circle at 50% 40%, #0099ff 40%, transparent 60%);
+      animation-duration: 18s;
+      bottom: 20px;
+    }
+
+    .wave3 {
+      background-image: radial-gradient(circle at 50% 40%, #66ccff 40%, transparent 60%);
+      animation-duration: 25s;
+      bottom: 40px;
+    }
+
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Title styling (no background now) */
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  </style>
 
    <!-- CSS here -->
    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -107,27 +175,33 @@
                                     </li>
                                     <li><a href="about.html">Resources</a>
                                        <ul class="submenu">
-                                          <li><a href="blog.html">Newsletter</a></li>
-                                          <li><a href="blog_details.html">Publications</a></li>
-                                          <li><a href=""> Links</a></li>
-                                          <li><a href=""> Policy briefs</a></li>
-                                          <li><a href=""> Gallery</a></li>
-                                          <li><a href=""> Petition</a></li>
+                                          <li><a href="http://127.0.0.1:5504/newsletter.html">Newsletter</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/publications.html">Publications</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/links.html"> Links</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/policybriefs.html"> Policy briefs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/gallery.html"> Gallery</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/petition.html"> Petition</a></li>
 
                                        </ul>
                                     </li>
-                                    <li><a href="blog.html">News</a>
-                                       <ul class="submenu">
-                                          <li><a href="blog.html">recent posts/events</a></li>
-                                          <li><a href="blog_details.html">upcoming activities/eventsBlog Details</a>
-                                          </li>
-                                          <li><a href="">vlogs</a></li>
-                                       </ul>
-                                    </li>
-                                    <li><a href="program.html">Interventions</a></li>
-                                    <li><a href="events.html">Activities </a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                 </ul>
+                                   <li><a href="blog.html">News</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="blog.html">recent posts/events</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/upcomingevents.html">upcoming activities/eventsBlog Details</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/vlogs.html">vlogs</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:5504/intevertions.html">Interventions</a>
+                                                     <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/outreaches.html">Outreaches</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/partnership.html">Partnership</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="events.html">Activities </a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
                               </nav>
                            </div>
                            <!-- Header-btn -->
@@ -149,19 +223,15 @@
    </header>
    <main>
       <!--? Hero Start -->
-      <div class="slider-area2">
-         <div class="slider-height2 d-flex align-items-center">
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-12">
-                     <div class="hero-cap hero-cap2 pt-20 text-center">
-                        <h2>Blog Details</h2>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+     <div class="subpage-hero">
+    <!-- Waves -->
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+
+    <!-- Text -->
+    <h1 class="hero-title">Blog Detail</h1>
+  </div>
       <!-- Hero End -->
       <!--? Blog Area Start -->
       <section class="blog_area single-post-area section-padding">
@@ -244,7 +314,7 @@
                               <div class="detials">
                                  <p>Prev Post</p>
                                  <a href="#">
-                                    <h4 style="color: #2d2d2d;">Space The Final Frontier</h4>
+                                    <h4 style="color: #2d2d2d;">....</h4>
                                  </a>
                               </div>
                            </div>
@@ -253,7 +323,7 @@
                               <div class="detials">
                                  <p>Next Post</p>
                                  <a href="#">
-                                    <h4 style="color: #2d2d2d;">Telescopes 101</h4>
+                                    <h4 style="color: #2d2d2d;">....</h4>
                                  </a>
                               </div>
                               <div class="arrow">
@@ -275,7 +345,7 @@
                         <img src="assets/img/blog/author.png" alt="">
                         <div class="media-body">
                            <a href="#">
-                              <h4>Harvard milan</h4>
+                              <h4>Jerry Kitiabi</h4>
                            </a>
                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione animi nemo soluta
                               perspiciatis, consectetur quod eveniet? Ut, obcaecati amet quidem vitae velit quas labore
@@ -300,9 +370,9 @@
                                  <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                        <h5>
-                                          <a href="#">Emilly Blunt</a>
+                                          <a href="#">Vivian </a>
                                        </h5>
-                                       <p class="date">December 4, 2017 at 3:12 pm </p>
+                                       <p class="date">march 4, 2025 at 3:12 pm </p>
                                     </div>
                                     <div class="reply-btn">
                                        <a href="#" class="btn-reply text-uppercase">reply</a>
@@ -327,9 +397,9 @@
                                  <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                        <h5>
-                                          <a href="#">Emilly Blunt</a>
+                                          <a href="#">Peter</a>
                                        </h5>
-                                       <p class="date">04/04/2024 </p>
+                                       <p class="date">04/04/2025 </p>
                                     </div>
                                     <div class="reply-btn">
                                        <a href="#" class="btn-reply text-uppercase">reply</a>
@@ -354,9 +424,9 @@
                                  <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                        <h5>
-                                          <a href="#">Emilly Blunt</a>
+                                          <a href="#">Gloriah</a>
                                        </h5>
-                                       <p class="date">04/04/2023 </p>
+                                       <p class="date">04/04/2025 </p>
                                     </div>
                                     <div class="reply-btn">
                                        <a href="#" class="btn-reply text-uppercase">reply</a>
@@ -466,7 +536,7 @@
                               <a href="blog_details.html">
                                  <h3 style="color: #2d2d2d;">lorem</h3>
                               </a>
-                              <p>January 12, 2019</p>
+                              <p>January 12, 2025</p>
                            </div>
                         </div>
                         <div class="media post_item">
@@ -531,32 +601,32 @@
                         <ul class="instagram_row flex-wrap">
                            <li>
                               <a href="#">
-                                 <img class="img-fluid" src="assets/img/post/post_5.png" alt="">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119683.jpg" alt="">
                               </a>
                            </li>
                            <li>
                               <a href="#">
-                                 <img class="img-fluid" src="assets/img/post/post_6.png" alt="">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119695.jpg" alt="">
                               </a>
                            </li>
                            <li>
                               <a href="#">
-                                 <img class="img-fluid" src="assets/img/post/post_7.png" alt="">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119703.jpg" alt="">
                               </a>
                            </li>
                            <li>
                               <a href="#">
-                                 <img class="img-fluid" src="assets/img/post/post_8.png" alt="">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119705.jpg" alt="">
                               </a>
                            </li>
                            <li>
                               <a href="#">
-                                 <img class="img-fluid" src="assets/img/post/post_9.png" alt="">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119701.jpg" alt="">
                               </a>
                            </li>
                            <li>
                               <a href="#">
-                                 <img class="img-fluid" src="assets/img/post/post_10.png" alt="">
+                                 <img class="img-fluid" src="assets/img/gallery/case1.JPG" alt="">
                               </a>
                            </li>
                         </ul>

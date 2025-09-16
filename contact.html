@@ -8,6 +8,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.JPG">
 
+    <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+    }
+
+    .subpage-hero {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 16px;
+      margin: 24px;
+      background: linear-gradient(180deg, #0077ff, #0055aa);
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Wave layers */
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100px;
+      background-repeat: repeat-x;
+      background-size: 50% 100px;
+      opacity: 0.5;
+      animation: wave 10s linear infinite;
+    }
+
+    .wave1 {
+      background-image: radial-gradient(circle at 50% 40%, #33aaff 40%, transparent 60%);
+      animation-duration: 12s;
+      bottom: 0;
+    }
+
+    .wave2 {
+      background-image: radial-gradient(circle at 50% 40%, #0099ff 40%, transparent 60%);
+      animation-duration: 18s;
+      bottom: 20px;
+    }
+
+    .wave3 {
+      background-image: radial-gradient(circle at 50% 40%, #66ccff 40%, transparent 60%);
+      animation-duration: 25s;
+      bottom: 40px;
+    }
+
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Title styling (no background now) */
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  </style>
+
    <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -104,27 +173,33 @@
                                                 </li>
                                                 <li><a href="about.html">Resources</a>
                                                     <ul class="submenu">
-                                                        <li><a href="blog.html">Newsletter</a></li>
-                                                        <li><a href="blog_details.html">Publications</a></li>
-                                                        <li><a href=""> Links</a></li>
-                                                        <li><a href=""> Policy briefs</a></li>
-                                                        <li><a href=""> Gallery</a></li>
-                                                        <li><a href=""> Petition</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/newsletter.html">Newsletter</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/publications.html">Publications</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/links.html"> Links</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/policybriefs.html"> Policy briefs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/gallery.html"> Gallery</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/petition.html"> Petition</a></li>
                                                         
                                                     </ul>
                                                 </li>
-                                                <li><a href="blog.html">News</a>
+                                               <li><a href="blog.html">News</a>
                                                     <ul class="submenu">
                                                         <li><a href="blog.html">recent posts/events</a></li>
                                                         <li><a href="blog_details.html">upcoming activities/eventsBlog Details</a></li>
-                                                        <li><a href="">vlogs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/vlogs.html">vlogs</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="program.html">Interventions</a></li>
+                                                <li><a href="http://127.0.0.1:5504/intevertions.html">Interventions</a>
+                                                     <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/outreaches.html">Outreaches</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/partnership.html">Partnership</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                    </ul>
+                                                </li>
                                                 <li><a href="events.html">Activities </a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                             </ul>
-                                            
                                         </nav>
                                     </div>
                                     <!-- Header-btn -->
@@ -146,19 +221,16 @@
     </header>
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2">
-            <div class="slider-height2 d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="hero-cap hero-cap2 pt-20 text-center">
-                                <h2>Contact Us</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
+  <div class="subpage-hero">
+    <!-- Waves -->
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+
+    <!-- Text -->
+    <h1 class="hero-title">Contact Us</h1>
+  </div>
         <!-- Hero End -->
         <!--?  Contact Area start  -->
         <section class="contact-section">

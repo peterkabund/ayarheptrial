@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ayarhep — Upcoming Events</title>
+<meta name="description" content="Upcoming interventions and outreaches — interactive calendar, filters, RSVP and details." />
+
+
+<!-- CSS here -->
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="assets/css/slicknav.css">
+   <link rel="stylesheet" href="assets/css/animate.min.css">
+   <link rel="stylesheet" href="assets/css/hamburgers.min.css">
+   <link rel="stylesheet" href="assets/css/magnific-popup.css">
+   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+   <link rel="stylesheet" href="assets/css/themify-icons.css">
+   <link rel="stylesheet" href="assets/css/slick.css">
+   <link rel="stylesheet" href="assets/css/nice-select.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+
+
+<!-- Styles (self-contained) -->
+<style>
+  :root{
+    --bg:#ffffff;
+    --panel:#fbfdff;
+    --muted:#6b7280;
+    --text:#051023;
+    --accent-red:#e53946;
+    --accent-blue:#1d4ed8;
+    --glass: rgba(29,78,216,0.06);
+    --radius:12px;
+    --card-shadow: 0 10px 30px rgba(16,24,40,0.06);
+    --glass-2: rgba(29,78,216,0.09);
+    --success: #16a34a;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+    background:linear-gradient(180deg,var(--bg),#f7fbff 80%);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.4;
+  }
+
+  /* container */
+  .wrap{max-width:1200px;margin:28px auto;padding:20px}
+
+  /* HERO */
+  .hero{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    padding:26px;
+    border-radius:16px;
+    background:linear-gradient(90deg, rgba(29,78,216,0.03), rgba(230,57,70,0.02));
+    box-shadow:var(--card-shadow);
+    overflow:hidden;
+    position:relative;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    right:-120px;
+    top:-60px;
+    width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(29,78,216,0.12), transparent 25%),
+               radial-gradient(circle at 70% 70%, rgba(230,57,70,0.12), transparent 25%);
+    transform: rotate(18deg) scale(.95);
+    filter: blur(12px);
+    pointer-events:none;
+  }
+  .hero-left{flex:1;min-width:240px}
+  .hero-right{width:320px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+
+  .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px;background:linear-gradient(90deg,var(--accent-red),var(--accent-blue));color:white}
+  .hero h1{margin:8px 0 6px;font-size:22px;line-height:1.05}
+  .hero p{margin:0;color:var(--muted)}
+
+  .hero-controls{display:flex;gap:8px;align-items:center;margin-top:8px}
+  .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700;background:var(--panel);box-shadow:0 6px 18px rgba(16,24,40,0.04)}
+  .btn.primary{background:linear-gradient(90deg,var(--accent-red),var(--accent-blue));color:#fff}
+  .view-toggle{display:flex;gap:6px;background:transparent;border-radius:8px;padding:6px;border:1px solid rgba(2,6,23,0.04)}
+  .view-toggle button{background:transparent;border:none;padding:6px 10px;border-radius:6px;cursor:pointer}
+
+  /* layout */
+  .toolbar{display:flex;gap:12px;align-items:center;margin-top:18px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .searchbox{flex:1;min-width:220px}
+  input[type=search], input[type=date], select {
+    width:100%;padding:10px;border-radius:10px;border:1px solid #e6eef9;background:#fff;
+    outline:none;font-size:14px;color:var(--text)
+  }
+  .chip{padding:8px 10px;border-radius:999px;border:1px solid rgba(2,6,23,0.06);background:white;cursor:pointer;font-weight:600;color:var(--muted)}
+  .chip.active{background:linear-gradient(90deg,var(--accent-red),var(--accent-blue));color:#fff;border:none;box-shadow:0 10px 30px rgba(29,78,216,0.06)}
+
+  .layout{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+  @media(max-width:980px){.layout{grid-template-columns:1fr} .hero-right{display:none}}
+
+  /* EVENTS LIST */
+  .events {display:flex;flex-direction:column;gap:14px}
+  .event-card{
+    display:grid;grid-template-columns:120px 1fr 120px;gap:12px;padding:14px;border-radius:12px;background:var(--panel);box-shadow:var(--card-shadow);align-items:center;border:1px solid rgba(2,6,23,0.04);
+    transition:transform .18s ease,box-shadow .18s;
+  }
+  .event-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(2,6,23,0.08)}
+  .thumb{background:linear-gradient(135deg,var(--accent-blue),var(--accent-red));height:86px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px}
+  .ev-title{font-weight:800;font-size:16px;margin-bottom:6px}
+  .ev-meta{font-size:13px;color:var(--muted)}
+  .ev-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .badge{padding:6px 8px;border-radius:8px;font-weight:700;font-size:12px}
+  .badge.cat{background:rgba(29,78,216,0.09);color:var(--accent-blue);border:1px solid rgba(29,78,216,0.06)}
+  .badge.date{background:rgba(230,57,70,0.06);color:var(--accent-red);border:1px solid rgba(230,57,70,0.06)}
+
+  /* SIDEBAR */
+  .sidebar{display:flex;flex-direction:column;gap:12px}
+  .panel{background:var(--panel);padding:12px;border-radius:12px;box-shadow:var(--card-shadow);border:1px solid rgba(2,6,23,0.04)}
+  .small{font-size:13px;color:var(--muted)}
+
+  /* calendar */
+  .calendar{background:var(--panel);padding:12px;border-radius:12px;border:1px solid rgba(2,6,23,0.04)}
+  .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .day{padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);min-height:78px;position:relative}
+  .day .date{font-size:13px;font-weight:700;color:var(--muted)}
+  .day .dot{position:absolute;left:8px;bottom:8px;width:8px;height:8px;border-radius:50%;}
+  .day.has-events{cursor:pointer;box-shadow:0 8px 18px rgba(2,6,23,0.03)}
+  .day.today{outline:2px dashed rgba(29,78,216,0.18)}
+
+  /* modal */
+  .modal-backdrop{position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.45);z-index:1200}
+  .modal{background:white;border-radius:12px;padding:18px;max-width:680px;width:94%;box-shadow:0 30px 70px rgba(2,6,23,0.3)}
+  .modal.open{display:grid}
+  .modal-head{display:flex;justify-content:space-between;align-items:center}
+  .form-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .form-row input, .form-row textarea{flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef9}
+
+  /* tiny */
+  .muted{color:var(--muted)}
+  .center{text-align:center}
+  .countdown{font-weight:900;color:var(--accent-blue)}
+  .empty{padding:40px;text-align:center;color:var(--muted);background:var(--panel);border-radius:12px}
+
+</style>
+</head>
+<body>
+   <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/loder.JPG" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top d-none d-lg-block">
+                    <div class="container-fluid">
+                        <div class="col-xl-12">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="header-info-left d-flex">
+                                    <ul>     
+                                        <li>Phone: +254 722390634</li>
+                                        <li>Email: noreply@yourdomain.com</li>
+                                    </ul>
+                                    <div class="header-social">    
+                                        <ul>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="header-info-right d-flex align-items-center">
+                                    <div class="select-this">
+                                        <form action="#">
+                                            <div class="select-itms">
+                                                <select name="select" id="select1">
+                                                    <option value="">English</option>
+                                                    <option value="">Bangla</option>
+                                                    <option value="">Arabic</option>
+                                                    <option value="">Hindi</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <ul class="contact-now">     
+                                        <li><a href="#">Subscribe Now</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html"><img src="assets/img/logo/logo.JPG" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper  d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">                                                                                          
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="">Focus Area</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/hivsrhr.html">HIV/SRHR information and knowledge</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/researchdocs.html">Research, documentation, and advocacy</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/capacitybuilding.html">Capacity building and empowerment for leadership, policy making and economic empowerment</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/empowerment.html">Organization development</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="about.html">Resources</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/newsletter.html">Newsletter</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/publications.html">Publications</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/links.html"> Links</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/policybriefs.html"> Policy briefs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/gallery.html"> Gallery</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/petition.html"> Petition</a></li>
+                                                        
+                                                    </ul>
+                                                </li>
+                                                <li><a href="blog.html">News</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="blog.html">recent posts/events</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/upcomingevents.html">upcoming activities/eventsBlog Details</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/vlogs.html">vlogs</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:5504/intevertions.html">Interventions</a>
+                                                     <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/outreaches.html">Outreaches</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/partnership.html">Partnership</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="events.html">Activities </a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <!-- Header-btn -->
+                                    <!-- <div class="header-right-btn d-none d-lg-block ml-20">
+                                        <a href="contact.html" class="btn header-btn">Donate</a>
+                                    </div> -->
+                                </div>
+                            </div> 
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+    <!-- header end -->
+  <main class="wrap" id="app">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <div class="eyebrow">Upcoming</div>
+        <h1 id="heroTitle">Upcoming Events — Join, learn and take part</h1>
+        <p>Find Ayarhep’s upcoming outreaches, trainings and community activities. Filter, RSVP or add to your calendar.</p>
+
+        <div class="toolbar">
+          <div class="filters" role="region" aria-label="filters">
+            <div class="searchbox" style="min-width:260px">
+              <label class="muted" for="searchInput">Search</label>
+              <input id="searchInput" type="search" placeholder="Search events, locations or tags…" />
+            </div>
+
+            <div style="width:150px">
+              <label class="muted" for="fromDate">From</label>
+              <input id="fromDate" type="date" />
+            </div>
+            <div style="width:150px">
+              <label class="muted" for="toDate">To</label>
+              <input id="toDate" type="date" />
+            </div>
+
+            <div style="display:flex;gap:6px;align-items:center">
+              <button class="chip active" data-cat="all">All</button>
+              <button class="chip" data-cat="Health">Health</button>
+              <button class="chip" data-cat="Education">Education</button>
+              <button class="chip" data-cat="Water">Youth Care</button>
+              <button class="chip" data-cat="Environment">SRHR</button>
+            </div>
+          </div>
+
+          <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+            <div class="view-toggle" role="tablist" aria-label="View toggle">
+              <button id="listViewBtn" aria-pressed="true" title="List view">List</button>
+              <button id="calViewBtn" aria-pressed="false" title="Calendar view">Calendar</button>
+            </div>
+            <button class="btn primary" id="newEventBtn">Add Sample</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="panel center">
+          <div class="small">Next event starts in</div>
+          <div style="font-size:20px;margin-top:8px" id="nextCountdown" class="countdown">—</div>
+          <div class="small muted" style="margin-top:8px" id="nextEventLabel">—</div>
+        </div>
+
+        <div class="panel">
+          <div class="small">Quick filters</div>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <button class="chip" data-quick="this-week">This week</button>
+            <button class="chip" data-quick="this-month">This month</button>
+            <button class="chip" data-quick="nearby">Near me</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout" id="mainLayout">
+      <div>
+        <div id="listView" class="events" role="list" aria-live="polite">
+          <!-- event cards inserted here -->
+        </div>
+
+        <div id="calendarView" style="display:none;margin-top:12px">
+          <div class="calendar">
+            <div class="cal-header">
+              <button id="prevMonth" class="btn">&larr;</button>
+              <div id="calTitle" class="muted">September 2025</div>
+              <button id="nextMonth" class="btn">&rarr;</button>
+            </div>
+            <div class="month-grid" id="monthGrid" role="grid" aria-label="Calendar"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="sidebar" aria-label="sidebar">
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong>Upcoming counts</strong>
+            <span class="muted" id="totalCount">0</span>
+          </div>
+          <div style="margin-top:10px" id="countsList">
+            <!-- counts -->
+          </div>
+        </div>
+
+        <div class="panel">
+          <strong>Tags</strong>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px" id="tagCloud"></div>
+        </div>
+
+        <div class="panel center muted">
+          <div style="font-weight:800;font-size:18px">Ayarhep</div>
+          <div style="font-size:13px;margin-top:6px">Community outreaches &amp; interventions</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- RSVP Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div><strong id="modalTitle">Event title</strong><div class="small muted" id="modalWhen"></div></div>
+        <button id="modalClose" class="btn">Close</button>
+      </div>
+
+      <p id="modalDesc" style="margin-top:12px;color:var(--muted)"></p>
+
+      <form id="rsvpForm" style="margin-top:12px">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <input type="tel" name="phone" placeholder="Phone (optional)" />
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+          <button type="button" id="addToCal" class="btn">Add to Calendar</button>
+          <button type="submit" class="btn primary">RSVP</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+   <!-- Footer Top-->
+          <footer>
+        <div class="footer-wrapper section-bg2" data-background="">
+            <!-- Footer Top-->
+            <div class="footer-area footer-padding">
+                <div class="container">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <div class="footer-tittle">
+                                    <div class="footer-logo mb-20">
+                                        <a href="index.html"><img src="assets/img/logo/logo.JPG" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Contact Info</h4>
+                                    <ul>
+                                        <li>
+                                            <p>Address :Your address goes here, your demo address.</p>
+                                        </li>
+                                        <li><a href="#">Phone : +25722390634</a></li>
+                                        <li><a href="#">Email :</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Important Link</h4>
+                                    <ul>
+                                        <li><a href="#"> View Project</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Testimonial</a></li>
+                                        <li><a href="#">Proparties</a></li>
+                                        <li><a href="#">Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Newsletter</h4>
+                                    <div class="footer-pera footer-pera2">
+                                    <p>...............</p>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form" >
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                        method="get" class="subscribe_form relative mail_part">
+                                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                            class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = ' Email Address '">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                class="email_icon newsletter-submit button-contactForm"><img src="assets/img/gallery/form.png" alt=""></button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer-bottom -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-xl-10 col-lg-9 ">
+                                <div class="footer-copy-right">
+                                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="ht.com" target="_blank"></a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-3">
+                                <div class="footer-social f-right">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fas fa-globe"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS here -->
+
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="./assets/js/jquery.barfiller.js"></script>
+    
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.countdown.min.js"></script>
+    <script src="./assets/js/hover-direction-snake.min.js"></script>
+
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+    
+<script>
+/* ---------- Events data & helpers ---------- */
+const EVENTS = [
+  { id:1, title:"Market Health Camp", category:"Health", date:"2025-10-03T09:00:00", location:"Central Market", people:420, desc:"Free screening & referrals at Central Market." },
+  { id:2, title:"School Supplies Drive", category:"Education", date:"2025-10-18T10:00:00", location:"Sunrise Primary", people:260, desc:"Distribution of learning kits and reading sessions." },
+  { id:3, title:"Borehole Repair", category:"Water", date:"2025-09-28T08:30:00", location:"Lakeside Village", people:180, desc:"Repair and maintenance of community borehole." },
+  { id:4, title:"Women Biz Market", category:"Environment", date:"2025-11-02T11:00:00", location:"Eastfield Hall", people:95, desc:"Market day supporting women vendors." },
+  { id:5, title:"Tree Planting Day", category:"Environment", date:"2025-09-25T07:30:00", location:"Green Park", people:120, desc:"Volunteers plant trees across schools." },
+  { id:6, title:"Youth Coding Bootcamp", category:"Education", date:"2025-09-20T09:00:00", location:"Tech Hub", people:40, desc:"Intro to coding for youth." }
+];
+
+let state = {
+  events: [...EVENTS],
+  view:'list',
+  filter:'all',
+  search:'',
+  from:null,
+  to:null,
+  monthOffset:0 // for calendar
+};
+
+/* utility date formatting */
+function fmtDate(dt){
+  const d = new Date(dt);
+  return d.toLocaleString(undefined,{weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit'});
+}
+function fmtShort(d){
+  const dd = new Date(d);
+  return dd.toLocaleDateString();
+}
+
+/* ---------- DOM refs ---------- */
+const listView = document.getElementById('listView');
+const calendarView = document.getElementById('calendarView');
+const listBtn = document.getElementById('listViewBtn');
+const calBtn = document.getElementById('calViewBtn');
+const searchInput = document.getElementById('searchInput');
+const chips = Array.from(document.querySelectorAll('.chip[data-cat]'));
+const newEventBtn = document.getElementById('newEventBtn');
+const nextCountdown = document.getElementById('nextCountdown');
+const nextEventLabel = document.getElementById('nextEventLabel');
+const totalCount = document.getElementById('totalCount');
+const countsList = document.getElementById('countsList');
+const tagCloud = document.getElementById('tagCloud');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalWhen = document.getElementById('modalWhen');
+const rsvpForm = document.getElementById('rsvpForm');
+const monthGrid = document.getElementById('monthGrid');
+const calTitle = document.getElementById('calTitle');
+const prevMonth = document.getElementById('prevMonth');
+const nextMonth = document.getElementById('nextMonth');
+
+/* ---------- Render functions ---------- */
+function renderList(){
+  const out = applyFilters();
+  listView.innerHTML = '';
+  if(out.length === 0){
+    listView.innerHTML = '<div class="empty">No events match your filters.</div>';
+    return;
+  }
+  out.forEach(ev=>{
+    const card = document.createElement('article'); card.className='event-card'; card.setAttribute('role','listitem');
+    card.innerHTML = `
+      <div class="thumb" aria-hidden="true">${ev.title.split(' ').slice(0,2).map(w=>w[0]).join('')}</div>
+      <div>
+        <div class="ev-title">${ev.title}</div>
+        <div class="ev-meta">${fmtDate(ev.date)} • ${ev.location} • <span class="muted">${ev.category}</span></div>
+        <div style="margin-top:8px;color:var(--muted)">${ev.desc}</div>
+      </div>
+      <div class="ev-actions">
+        <div class="badge cat">${ev.category}</div>
+        <div class="badge date" style="margin-top:8px">${new Date(ev.date).toLocaleDateString()}</div>
+        <button class="btn" style="margin-top:10px" onclick="openModal(${ev.id})">Details / RSVP</button>
+      </div>
+    `;
+    listView.appendChild(card);
+  });
+  updateCounts(out);
+}
+
+/* filtering */
+function applyFilters(){
+  let items = [...state.events];
+  // category
+  if(state.filter && state.filter !== 'all'){
+    items = items.filter(i => i.category === state.filter);
+  }
+  // search
+  if(state.search){
+    const q = state.search.toLowerCase();
+    items = items.filter(i => (i.title + ' ' + i.location + ' ' + i.desc).toLowerCase().includes(q));
+  }
+  // date range
+  if(state.from){
+    items = items.filter(i => new Date(i.date) >= new Date(state.from));
+  }
+  if(state.to){
+    items = items.filter(i => new Date(i.date) <= new Date(state.to + 'T23:59:59'));
+  }
+  // sort upcoming first
+  items.sort((a,b)=>new Date(a.date) - new Date(b.date));
+  return items;
+}
+
+/* counts & tags */
+function updateCounts(list){
+  totalCount.textContent = list.length;
+  // breakdown
+  const byCat = {};
+  list.forEach(i=>byCat[i.category] = (byCat[i.category]||0)+1);
+  countsList.innerHTML = Object.entries(byCat).map(([k,v])=>`<div style="display:flex;justify-content:space-between"><span>${k}</span><span class="muted">${v}</span></div>`).join('');
+  // tags (simple categories as tags)
+  tagCloud.innerHTML = Object.keys(byCat).map(k=>`<button class="chip" data-cat="${k}">${k} (${byCat[k]})</button>`).join(' ');
+  // attach tag click
+  Array.from(tagCloud.querySelectorAll('.chip')).forEach(el=>el.addEventListener('click', ()=>{ setCategory(el.dataset.cat); }));
+}
+
+/* next upcoming */
+function updateNextCountdown(){
+  const now = new Date();
+  const upcoming = state.events.filter(e=> new Date(e.date) > now).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  if(upcoming.length === 0){
+    nextCountdown.textContent = '—';
+    nextEventLabel.textContent = 'No upcoming events';
+    return;
+  }
+  const next = upcoming[0];
+  nextEventLabel.textContent = `${next.title} • ${next.location}`;
+  // countdown update
+  function tick(){
+    const diff = new Date(next.date) - new Date();
+    if(diff <= 0){
+      nextCountdown.textContent = 'Starting now';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff%(1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff%(1000*60*60)) / (1000*60));
+    nextCountdown.textContent = `${days}d ${hours}h ${mins}m`;
+  }
+  tick();
+  clearInterval(window._countdown);
+  window._countdown = setInterval(tick, 60*1000);
+}
+
+/* modal */
+function openModal(id){
+  const ev = state.events.find(e=>e.id===id);
+  if(!ev) return;
+  modalTitle.textContent = ev.title;
+  modalDesc.textContent = ev.desc;
+  modalWhen.textContent = fmtDate(ev.date) + ' • ' + ev.location;
+  modalBackdrop.style.display = 'grid';
+  modalBackdrop.setAttribute('aria-hidden','false');
+}
+function closeModal(){
+  modalBackdrop.style.display = 'none';
+  modalBackdrop.setAttribute('aria-hidden','true');
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', (e)=>{ if(e.target === modalBackdrop) closeModal(); });
+rsvpForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  alert('Thanks — your RSVP is recorded (demo).');
+  closeModal();
+});
+
+/* calendar rendering */
+function renderCalendar(){
+  monthGrid.innerHTML = '';
+  const offset = state.monthOffset;
+  const base = new Date(); base.setDate(1); base.setMonth(base.getMonth() + offset);
+  const year = base.getFullYear(), month = base.getMonth();
+  calTitle.textContent = base.toLocaleString(undefined,{month:'long', year:'numeric'});
+  // find start day
+  const startIdx = new Date(year, month, 1).getDay(); // 0..6 (Sun..Sat)
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  // show weekday headers
+  const labels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  labels.forEach(lbl=>{
+    const d = document.createElement('div'); d.className='day'; d.style.background='transparent'; d.innerHTML=`<div class="date" style="font-weight:700;color:var(--muted)">${lbl}</div>`;
+    monthGrid.appendChild(d);
+  });
+  // grid cells
+  for(let i=0;i<startIdx;i++){
+    const d = document.createElement('div'); d.className='day'; d.style.opacity='.25'; monthGrid.appendChild(d);
+  }
+  // fill days
+  for(let d=1; d<=daysInMonth; d++){
+    const cell = document.createElement('div'); cell.className='day';
+    const full = new Date(year, month, d);
+    cell.innerHTML = `<div class="date">${d}</div>`;
+    // find events on this date
+    const evs = state.events.filter(ev => {
+      const ed = new Date(ev.date);
+      return ed.getFullYear()===year && ed.getMonth()===month && ed.getDate()===d;
+    });
+    if(evs.length){
+      cell.classList.add('has-events');
+      evs.forEach((ev,i)=> {
+        const dot = document.createElement('div');
+        dot.className='dot';
+        dot.style.background = i%2 ? 'var(--accent-blue)' : 'var(--accent-red)';
+        cell.appendChild(dot);
+      });
+      // click to show list of events in modal-like quick-view
+      cell.addEventListener('click', ()=> {
+        showEventsForDate(full);
+      });
+    }
+    // highlight today
+    const now = new Date();
+    if(full.toDateString() === now.toDateString()){
+      cell.classList.add('today');
+    }
+    monthGrid.appendChild(cell);
+  }
+}
+
+/* show events for a date */
+function showEventsForDate(date){
+  const evs = state.events.filter(ev=>{
+    const ed = new Date(ev.date);
+    return ed.getFullYear()===date.getFullYear() && ed.getMonth()===date.getMonth() && ed.getDate()===date.getDate();
+  });
+  if(evs.length === 0) return;
+  // build quick html
+  modalTitle.textContent = `Events on ${date.toLocaleDateString()}`;
+  modalDesc.textContent = '';
+  const listHtml = evs.map(ev=>`• ${ev.title} — ${new Date(ev.date).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})} @ ${ev.location}`).join('\n');
+  modalDesc.textContent = listHtml;
+  modalWhen.textContent = '';
+  modalBackdrop.style.display = 'grid';
+  modalBackdrop.setAttribute('aria-hidden','false');
+}
+
+/* ---------- UI wiring ---------- */
+function setCategory(cat){
+  state.filter = cat;
+  chips.forEach(c=> c.classList.toggle('active', c.dataset.cat===cat));
+  renderAll();
+}
+chips.forEach(c=>{
+  c.addEventListener('click', ()=> {
+    setCategory(c.dataset.cat);
+    chips.forEach(x=>x.setAttribute('aria-pressed', x.classList.contains('active')));
+  });
+});
+searchInput.addEventListener('input', (e)=>{ state.search = e.target.value; renderAll(); });
+document.getElementById('fromDate').addEventListener('change', e=>{ state.from = e.target.value || null; renderAll(); });
+document.getElementById('toDate').addEventListener('change', e=>{ state.to = e.target.value || null; renderAll(); });
+
+listBtn.addEventListener('click', ()=>{ state.view='list'; toggleView(); });
+calBtn.addEventListener('click', ()=>{ state.view='calendar'; toggleView(); });
+
+function toggleView(){
+  if(state.view === 'list'){
+    listView.style.display = 'flex';
+    calendarView.style.display = 'none';
+    listBtn.setAttribute('aria-pressed','true');
+    calBtn.setAttribute('aria-pressed','false');
+  } else {
+    listView.style.display = 'none';
+    calendarView.style.display = 'block';
+    listBtn.setAttribute('aria-pressed','false');
+    calBtn.setAttribute('aria-pressed','true');
+    renderCalendar();
+  }
+}
+
+/* add sample event */
+newEventBtn.addEventListener('click', ()=>{
+  const id = state.events.length + 1;
+  const dt = new Date(); dt.setDate(dt.getDate() + Math.round(Math.random()*30));
+  dt.setHours(9 + Math.floor(Math.random()*6));
+  const newEv = { id, title:`Pop-up Clinic #${id}`, category: ['Health','Education','Water','Environment'][Math.floor(Math.random()*4)], date: dt.toISOString(), location:`New Area ${id}`, people: Math.floor(Math.random()*300)+20, desc:'Rapid pop-up community service.' };
+  state.events.push(newEv);
+  renderAll();
+});
+
+/* calendar nav */
+prevMonth.addEventListener('click', ()=>{ state.monthOffset--; renderCalendar(); });
+nextMonth.addEventListener('click', ()=>{ state.monthOffset++; renderCalendar(); });
+
+/* addToCal demo (creates .ics file link) */
+document.getElementById('addToCal').addEventListener('click', ()=>{
+  const title = modalTitle.textContent || 'Event';
+  const start = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:${title}\nDTSTART:${start}\nEND:VEVENT\nEND:VCALENDAR`;
+  const blob = new Blob([ics], { type: 'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `${title.replace(/\s+/g,'_')}.ics`; document.body.appendChild(a); a.click(); a.remove();
+});
+
+/* initial render */
+function renderAll(){
+  renderList();
+  updateNextCountdown();
+  renderCalendar();
+}
+renderAll();
+
+/* keyboard accessibility: Esc closes modal */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>

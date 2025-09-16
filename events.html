@@ -9,6 +9,75 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.JPG">
 
+    <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+    }
+
+    .subpage-hero {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 16px;
+      margin: 24px;
+      background: linear-gradient(180deg, #0077ff, #0055aa);
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Wave layers */
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100px;
+      background-repeat: repeat-x;
+      background-size: 50% 100px;
+      opacity: 0.5;
+      animation: wave 10s linear infinite;
+    }
+
+    .wave1 {
+      background-image: radial-gradient(circle at 50% 40%, #33aaff 40%, transparent 60%);
+      animation-duration: 12s;
+      bottom: 0;
+    }
+
+    .wave2 {
+      background-image: radial-gradient(circle at 50% 40%, #0099ff 40%, transparent 60%);
+      animation-duration: 18s;
+      bottom: 20px;
+    }
+
+    .wave3 {
+      background-image: radial-gradient(circle at 50% 40%, #66ccff 40%, transparent 60%);
+      animation-duration: 25s;
+      bottom: 40px;
+    }
+
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Title styling (no background now) */
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  </style>
+
 	<!-- CSS here -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -108,23 +177,29 @@
                                                 </li>
                                                 <li><a href="about.html">Resources</a>
                                                     <ul class="submenu">
-                                                        <li><a href="blog.html">Newsletter</a></li>
-                                                        <li><a href="blog_details.html">Publications</a></li>
-                                                        <li><a href=""> Links</a></li>
-                                                        <li><a href=""> Policy briefs</a></li>
-                                                        <li><a href=""> Gallery</a></li>
-                                                        <li><a href=""> Petition</a></li>
-                                                        
+                                                        <li><a href="http://127.0.0.1:5504/newsletter.html">Newsletter</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/publications.html">Publications</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/links.html"> Links</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/policybriefs.html"> Policy briefs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/gallery.html"> Gallery</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/petition.html"> Petition</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="blog.html">News</a>
+                                               <li><a href="blog.html">News</a>
                                                     <ul class="submenu">
                                                         <li><a href="blog.html">recent posts/events</a></li>
-                                                        <li><a href="blog_details.html">upcoming activities/eventsBlog Details</a></li>
-                                                        <li><a href="">vlogs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/upcomingevents.html">upcoming activities/eventsBlog Details</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/vlogs.html">vlogs</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="program.html">Interventions</a></li>
+                                                <li><a href="http://127.0.0.1:5504/intevertions.html">Interventions</a>
+                                                     <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/outreaches.html">Outreaches</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/partnership.html">Partnership</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                    </ul>
+                                                </li>
                                                 <li><a href="events.html">Activities </a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                             </ul>
@@ -150,19 +225,16 @@
     <!-- header end -->
     <main>
     <!--? Hero Start -->
-    <div class="slider-area2">
-        <div class="slider-height2 d-flex align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap hero-cap2 pt-20 text-center">
-                            <h2>social events </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="subpage-hero">
+    <!-- Waves -->
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+
+    <!-- Text -->
+    <h1 class="hero-title">Interventions</h1>
+  </div>
+
      <section class="blog_area section-padding">
             <div class="container">
                 <div class="row">
@@ -320,7 +392,7 @@ Enhanced financial literacy and budgeting skills.</p>
                                         <a href="blog_details.html">
                                             <h3 style="color: #2d2d2d;">lorem</h3>
                                         </a>
-                                        <p>January 12, 2019</p>
+                                        <p>January 12, 2015</p>
                                     </div>
                                 </div>
                                 <div class="media post_item">
@@ -381,41 +453,41 @@ Enhanced financial literacy and budgeting skills.</p>
                                 </ul>
                             </aside>
 
-                            <aside class="single_sidebar_widget instagram_feeds">
-                                <h4 class="widget_title" style="color: #2d2d2d;">Instagram Feeds</h4>
-                                <ul class="instagram_row flex-wrap">
-                                    <li>
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/gallery/case1.JPG" alt="">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/gallery/case2.JPG" alt="">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/gallery/case3.JPG" alt="">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/gallery/home_blog1.JPG" alt="">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/gallery/pic 0.JPG" alt="">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/gallery/pic 17.jpg" alt="">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </aside>
+                           <aside class="single_sidebar_widget instagram_feeds">
+                        <h4 class="widget_title" style="color: #2d2d2d;">Instagram Feeds</h4>
+                        <ul class="instagram_row flex-wrap">
+                           <li>
+                              <a href="#">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119683.jpg" alt="">
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119695.jpg" alt="">
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119703.jpg" alt="">
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119705.jpg" alt="">
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                                 <img class="img-fluid" src="assets/img/gallery/1000119701.jpg" alt="">
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                                 <img class="img-fluid" src="assets/img/gallery/case1.JPG" alt="">
+                              </a>
+                           </li>
+                        </ul>
+                     </aside>
                             <aside class="single_sidebar_widget newsletter_widget">
                                 <h4 class="widget_title" style="color: #2d2d2d;">Newsletter</h4>
                                 <form action="#">

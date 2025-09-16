@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ayarhep Outreach</title>
+   <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.JPG">
+  <!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+    <link rel="stylesheet" href="assets/css/gijgo.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/animated-headline.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/slick.css">
+	<link rel="stylesheet" href="assets/css/nice-select.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root {
+      --bg:#061018; /* old dark bg, not used */
+      --panel:#071426;
+      --muted:#98a8bb;
+      --text:#f6fbff;
+      --accent-red:#e63946; 
+      --accent-blue:#1d4ed8;
+      --white:#ffffff;
+      --radius:14px;
+      --card-shadow: 0 14px 40px rgba(2,6,20,.1);
+    }
+
+    *{box-sizing:border-box}
+    body {
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      background:#fff;
+      color:#000;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .outreach-wrap {
+      max-width:1200px;
+      margin:28px auto;
+      padding:20px;
+    }
+
+    /* hero */
+    .hero {
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:22px;
+      align-items:center;
+      padding:36px;
+      border-radius:16px;
+      background:#fff;
+      box-shadow:var(--card-shadow);
+    }
+    .hero h1 {
+      font-size:30px;
+      margin:0 0 6px;
+      line-height:1.02;
+      background:linear-gradient(90deg,var(--accent-red),var(--accent-blue));
+      -webkit-background-clip:text;
+      color:transparent;
+      font-weight:900;
+    }
+    .hero p {color:#333;margin:0}
+    .hero .cta{display:flex;gap:10px;margin-top:14px}
+    .btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent-red),var(--accent-blue));color:#fff}
+    .btn-ghost{background:#f8f8f8;border:1px solid #ddd;color:#000}
+
+    /* stats */
+    .stats{display:flex;gap:14px;margin-top:18px}
+    .stat{flex:1;background:#fff;padding:14px;border-radius:12px;border:1px solid #ddd;text-align:center}
+    .stat .num{font-size:22px;font-weight:900;color:#000}
+    .stat .label{font-size:13px;color:#555}
+
+    /* map & list area */
+    .map-area{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:22px}
+    @media(max-width:980px){.hero{grid-template-columns:1fr} .map-area{grid-template-columns:1fr}}
+
+ .map-canvas {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fafafa;
+  position: relative;
+  height: 100%;       /* ensures it fills parent */
+  min-height: 500px;  /* keeps it steady */
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* map sizing & stacking fix (map-only) */
+.map-panel { position: relative; /* keep your existing properties too */ }
+.map-canvas { position: relative; min-height: 520px; height: 100%; overflow: hidden; }
+#map { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 520px; }
+
+/* ensure leaflet controls are visible above other UI */
+.leaflet-container { z-index: 0; }
+.leaflet-control { z-index: 1001; }
+
+/* optional: ensure parent stacking context does not hide map */
+.map-panel, .map-canvas { -webkit-transform: none; transform: none; }
+
+
+
+    .pin {
+      position:absolute;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      color:#fff;
+      border:3px solid rgba(0,0,0,.12);
+      cursor:pointer;
+      transform:translate(-50%,-50%);
+      font-size:16px;
+    }
+    .pin.red{background:var(--accent-red)}
+    .pin.blue{background:var(--accent-blue)}
+
+    /* sidebar */
+    .list-panel {
+      background:#fff;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid #ddd;
+      height:520px;
+      overflow:auto;
+      color:#000;
+    }
+    .event{display:flex;gap:10px;padding:10px;border-radius:10px;border:1px solid #eee;margin-bottom:10px;align-items:flex-start;background:#fff}
+    .ev-thumb{width:60px;height:60px;border-radius:8px;background:linear-gradient(45deg,var(--accent-red),var(--accent-blue));display:grid;place-items:center;font-weight:800;color:#fff}
+    .ev-title{font-weight:800;color:#000}
+    .ev-meta{font-size:13px;color:#555}
+
+    /* carousel */
+    .carousel{margin-top:22px;background:#fff;padding:14px;border-radius:12px;border:1px solid #ddd}
+    .slides{display:flex;gap:12px;overflow:hidden}
+    .slide{min-width:300px;background:#fff;padding:12px;border-radius:10px;border:1px solid #eee}
+    .slide p{color:#555}
+  </style>
+</head>
+<body>
+  <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top d-none d-lg-block">
+                    <div class="container-fluid">
+                        <div class="col-xl-12">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="header-info-left d-flex">
+                                    <ul>     
+                                        <li>Phone: +254 722390634</li>
+                                        <li>Email: noreply@yourdomain.com</li>
+                                    </ul>
+                                    <div class="header-social">    
+                                        <ul>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="header-info-right d-flex align-items-center">
+                                    <div class="select-this">
+                                        <form action="#">
+                                            <div class="select-itms">
+                                                <select name="select" id="select1">
+                                                    <option value="">English</option>
+                                                    <option value="">Bangla</option>
+                                                    <option value="">Arabic</option>
+                                                    <option value="">Hindi</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <ul class="contact-now">     
+                                        <li><a href="#">Subscribe Now</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html"><img src="assets/img/logo/logo.JPG" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper  d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">                                                                                          
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="">Focus Area</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/hivsrhr.html">HIV/SRHR information and knowledge</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/researchdocs.html">Research, documentation, and advocacy</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/capacitybuilding.html">Capacity building and empowerment for leadership, policy making and economic empowerment</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/empowerment.html">Organization development</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="about.html">Resources</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/newsletter.html">Newsletter</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/publications.html">Publications</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/links.html"> Links</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/policybriefs.html"> Policy briefs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/gallery.html"> Gallery</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/petition.html"> Petition</a></li>
+                                                        
+                                                    </ul>
+                                                </li>
+                                                <li><a href="blog.html">News</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="blog.html">recent posts/events</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/upcomingevents.html">upcoming activities/eventsBlog Details</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/vlogs.html">vlogs</a></li>
+                                                    </ul>
+                                                </li>
+                                               <li><a href="http://127.0.0.1:5504/intevertions.html">Interventions</a>
+                                                     <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/outreaches.html">Outreaches</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/partnership.html">Partnership</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="events.html">Activities </a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <!-- Header-btn -->
+                                    <!-- <div class="header-right-btn d-none d-lg-block ml-20">
+                                        <a href="contact.html" class="btn header-btn">Donate</a>
+                                    </div> -->
+                                </div>
+                            </div> 
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+  <div class="outreach-wrap">
+    <!-- Hero -->
+    <div class="hero">
+      <div>
+        <h1>Ayarhep Outreach</h1>
+        <p>Engaging communities through education, advocacy, and partnerships.</p>
+        <div class="cta">
+          <button class="btn btn-primary">Join Us</button>
+          <button class="btn btn-ghost">Learn More</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">250+</div><div class="label">Volunteers</div></div>
+          <div class="stat"><div class="num">80+</div><div class="label">Events</div></div>
+          <div class="stat"><div class="num">12</div><div class="label">Regions</div></div>
+        </div>
+      </div>
+      <img src="https://via.placeholder.com/420x280" alt="Outreach Image" style="width:100%;border-radius:12px">
+    </div>
+
+    <!-- Map + Sidebar -->
+   <div class="map-area">
+  <div class="map-panel">
+    <div id="map" class="map-canvas"></div>
+  </div>
+  <div class="list-panel">
+    <div class="event"><div class="ev-thumb">1</div><div><div class="ev-title">Homa Bay</div><div class="ev-meta">Community outreach</div></div></div>
+    <div class="event"><div class="ev-thumb">2</div><div><div class="ev-title">Laikipia</div><div class="ev-meta">Awareness campaign</div></div></div>
+    <div class="event"><div class="ev-thumb">3</div><div><div class="ev-title">Mombasa</div><div class="ev-meta">Training workshop</div></div></div>
+    <div class="event"><div class="ev-thumb">4</div><div><div class="ev-title">Nairobi - Komarock</div><div class="ev-meta">Youth program</div></div></div>
+    <div class="event"><div class="ev-thumb">5</div><div><div class="ev-title">Nairobi - Ngong Road</div><div class="ev-meta">Advocacy event</div></div></div>
+  </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Leaflet CSS/JS (only include once) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+(function(){
+  // safety: remove any previous map instance we may have created earlier
+  if(window.ayarhepMap && typeof window.ayarhepMap.remove === 'function'){
+    try { window.ayarhepMap.remove(); } catch(e){ console.warn('Failed to remove prior map:', e); }
+    window.ayarhepMap = null;
+  }
+
+  // find container
+  var mapEl = document.getElementById('map');
+  if(!mapEl){
+    console.error('Map init aborted: #map element not found.');
+    return;
+  }
+
+  // ensure minimum height (helps Leaflet calculate correctly)
+  mapEl.style.minHeight = mapEl.style.minHeight || '520px';
+
+  // Create map after DOM is fully ready
+  function createMap(){
+    // double-check single initialization
+    if(window.ayarhepMap) return;
+
+    // initialize centered in Kenya
+    var map = L.map('map', { scrollWheelZoom: false, zoomControl: true }).setView([-1.2921, 36.8219], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // marker helper (simple colored icons)
+    function makeIcon(text, color){
+      var html = '<div style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:'+color+';color:#fff;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.25);font-size:12px;">'+text+'</div>';
+      return L.divIcon({ html: html, className: '', iconSize:[36,36], iconAnchor:[18,18] });
+    }
+
+    var markers = [
+      { name: "Homa Bay", coords: [-0.5273, 34.4571], icon: makeIcon('HB','#e63946') },
+      { name: "Laikipia", coords: [0.3606, 36.7819], icon: makeIcon('LP','#1d4ed8') },
+      { name: "Mombasa", coords: [-4.0435, 39.6682], icon: makeIcon('MB','#e63946') },
+      { name: "Komarock (Nairobi)", coords: [-1.2921, 36.9253], icon: makeIcon('KM','#1d4ed8') },
+      { name: "Ngong Road (Nairobi)", coords: [-1.3032, 36.7519], icon: makeIcon('NG','#e63946') }
+    ];
+
+    var added = [];
+    markers.forEach(function(m){
+      var mk = L.marker(m.coords, { icon: m.icon }).addTo(map).bindPopup('<strong>'+m.name+'</strong>');
+      added.push(mk);
+      // pan slightly when clicking marker (optional)
+      mk.on('click', function(){ map.panTo(m.coords); });
+    });
+
+    // fit bounds
+    try {
+      var group = L.featureGroup(added);
+      map.fitBounds(group.getBounds().pad(0.18));
+    } catch(e){ console.warn('Fit bounds failed:', e); }
+
+    // store global reference
+    window.ayarhepMap = map;
+
+    // helper to recalc size (throttled)
+    var last = 0;
+    function throttle(fn, wait){
+      return function(){
+        var now = Date.now();
+        if(now - last < wait) return;
+        last = now;
+        fn.apply(this, arguments);
+      };
+    }
+    var recalc = throttle(function(){
+      if(window.ayarhepMap && typeof window.ayarhepMap.invalidateSize === 'function'){
+        window.ayarhepMap.invalidateSize(true);
+      }
+    }, 250);
+
+    // call a few times (delayed) to be safe across animations
+    setTimeout(recalc, 200);
+    setTimeout(recalc, 800);
+    setTimeout(recalc, 1600);
+
+    // on resize/orientation/scroll do a recalc
+    window.addEventListener('resize', recalc);
+    window.addEventListener('orientationchange', recalc);
+    window.addEventListener('scroll', recalc, { passive: true });
+
+    // Observe layout changes that could affect the map (header becoming sticky, class changes, animations)
+    var mo = new MutationObserver(function(){ recalc(); });
+    mo.observe(document.body, { attributes: true, childList: false, subtree: true });
+
+    // If map container was inside an element with CSS transform, Leaflet can miscalculate.
+    // Detect transformed ancestors and log them (do not modify them automatically).
+    (function detectTransformedAncestor(){
+      var el = mapEl.parentElement;
+      while(el && el !== document.body){
+        var s = getComputedStyle(el);
+        if(s.transform && s.transform !== 'none'){
+          console.warn('Map has an ancestor with CSS transform which may break Leaflet positioning:', el);
+          break;
+        }
+        el = el.parentElement;
+      }
+    })();
+  } // createMap()
+
+  // Initialize when DOM ready (safe if scripts earlier may modify layout)
+  if(document.readyState === 'complete' || document.readyState === 'interactive'){
+    createMap();
+  } else {
+    document.addEventListener('DOMContentLoaded', createMap);
+  }
+})();
+</script>
+
+
+    <!-- Carousel -->
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide"><p>Story highlight 1</p></div>
+        <div class="slide"><p>Story highlight 2</p></div>
+        <div class="slide"><p>Story highlight 3</p></div>
+      </div>
+    </div>
+  </div>
+
+    <footer>
+        <div class="footer-wrapper section-bg2" data-background="">
+            <!-- Footer Top-->
+            <div class="footer-area footer-padding">
+                <div class="container">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <div class="footer-tittle">
+                                    <div class="footer-logo mb-20">
+                                        <a href="index.html"><img src="assets/img/logo/logo.JPG" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Contact Info</h4>
+                                    <ul>
+                                        <li>
+                                            <p>Komarock</p>
+                                        </li>
+                                        <li><a href="#">Phone : +25722390634</a></li>
+                                        <li><a href="#">Email :</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Important Link</h4>
+                                    <ul>
+                                        <li><a href="#"> View Project</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Testimonial</a></li>
+                                        <li><a href="#">Proparties</a></li>
+                                        <li><a href="#">Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Newsletter</h4>
+                                    <div class="footer-pera footer-pera2">
+                                    <p>...............</p>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form" >
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                        method="get" class="subscribe_form relative mail_part">
+                                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                            class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = ' Email Address '">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                class="email_icon newsletter-submit button-contactForm"><img src="assets/img/gallery/form.png" alt=""></button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer-bottom -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-xl-10 col-lg-9 ">
+                                <div class="footer-copy-right">
+                                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="ht.com" target="_blank"></a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-3">
+                                <div class="footer-social f-right">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fas fa-globe"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS here -->
+
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="./assets/js/jquery.barfiller.js"></script>
+    
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.countdown.min.js"></script>
+    <script src="./assets/js/hover-direction-snake.min.js"></script>
+
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>

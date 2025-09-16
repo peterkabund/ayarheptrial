@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mentorship</title>
+   <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logo.JPG">
+  <!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+    <link rel="stylesheet" href="assets/css/gijgo.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/animated-headline.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/slick.css">
+	<link rel="stylesheet" href="assets/css/nice-select.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root{
+      --bg:#060b12;
+      --panel:#0b1424;
+      --muted:#9aa9b9;
+      --text:#f6fbff;
+      --red:#e63946;
+      --blue:#1d4ed8;
+      --white:#ffffff;
+      --glass:rgba(255,255,255,0.03);
+      --radius:14px;
+      --shadow:0 16px 40px rgba(0,0,0,.6);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto;background:#ffffff,; color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5}
+    .wrap{max-width:1200px;margin:30px auto;padding:20px}
+
+    /* Hero */
+    .hero{padding:40px;border-radius:18px;background:linear-gradient(135deg,rgba(230,57,70,0.07),rgba(29,78,216,0.07));box-shadow:var(--shadow);margin-bottom:30px;display:grid;gap:20px;grid-template-columns:1fr 400px;align-items:center}
+    .hero h1{font-size:34px;line-height:1.05;background:linear-gradient(90deg,var(--red),var(--blue));-webkit-background-clip:text;color:transparent;font-weight:900;margin-bottom:8px}
+    .hero p{color:var(--muted)}
+    .hero svg{width:100%;height:auto}
+
+    /* Tracks */
+    .tracks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-bottom:40px}
+    .track{background:var(--panel);border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,.04);box-shadow:0 8px 26px rgba(0,0,0,.4);transition:transform .3s,box-shadow .3s;cursor:pointer}
+    .track:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,0,0,.6)}
+    .track h3{margin-bottom:8px;background:linear-gradient(90deg,var(--red),var(--blue));-webkit-background-clip:text;color:transparent;font-size:20px;font-weight:800}
+    .track p{color:var(--muted);font-size:14px}
+
+    /* Mentor Spotlight */
+    .spotlight{margin-bottom:40px}
+    .spotlight h2{font-size:26px;margin-bottom:16px;font-weight:900;background:linear-gradient(90deg,var(--red),var(--blue));-webkit-background-clip:text;color:transparent}
+    .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:10px}
+    .mentor{flex:0 0 300px;background:var(--panel);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.04);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+    .mentor img{width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:12px}
+    .mentor h4{margin-bottom:4px;font-size:18px}
+    .mentor p{font-size:14px;color:var(--muted)}
+
+    /* Stats */
+    .stats{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+    .stat{flex:1;min-width:180px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,.03)}
+    .stat .num{font-size:28px;font-weight:900;color:var(--white)}
+    .stat .label{font-size:14px;color:var(--muted)}
+
+    /* Form */
+    .form{padding:24px;background:var(--panel);border-radius:14px;box-shadow:var(--shadow);border:1px solid #FF0000}
+    .form h2{margin-bottom:12px;font-size:24px;background:linear-gradient(90deg,var(--red),var(--blue));-webkit-background-clip:text;color:#FF0000}
+    .form label{display:block;margin-top:12px;font-weight:600}
+    .form input,.form textarea,.form select{width:100%;margin-top:6px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--text)}
+    .form button{margin-top:16px;padding:12px 18px;border:none;border-radius:10px;background:linear-gradient(90deg,var(--red),var(--blue));color:#fff;font-weight:700;cursor:pointer}
+    .form .msg{margin-top:12px;font-size:14px;color:var(--red);display:none}
+
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.hero svg{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top d-none d-lg-block">
+                    <div class="container-fluid">
+                        <div class="col-xl-12">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="header-info-left d-flex">
+                                    <ul>     
+                                        <li>Phone: +254 722390634</li>
+                                        <li>Email: noreply@yourdomain.com</li>
+                                    </ul>
+                                    <div class="header-social">    
+                                        <ul>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="header-info-right d-flex align-items-center">
+                                    <div class="select-this">
+                                        <form action="#">
+                                            <div class="select-itms">
+                                                <select name="select" id="select1">
+                                                    <option value="">English</option>
+                                                    <option value="">Bangla</option>
+                                                    <option value="">Arabic</option>
+                                                    <option value="">Hindi</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <ul class="contact-now">     
+                                        <li><a href="#">Subscribe Now</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html"><img src="assets/img/logo/logo.JPG" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper  d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">                                                                                          
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="">Focus Area</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/hivsrhr.html">HIV/SRHR information and knowledge</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/researchdocs.html">Research, documentation, and advocacy</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/capacitybuilding.html">Capacity building and empowerment for leadership, policy making and economic empowerment</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/empowerment.html">Organization development</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="about.html">Resources</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/newsletter.html">Newsletter</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/publications.html">Publications</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/links.html"> Links</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/policybriefs.html"> Policy briefs</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/gallery.html"> Gallery</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/petition.html"> Petition</a></li>
+                                                        
+                                                    </ul>
+                                                </li>
+                                                <li><a href="blog.html">News</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="blog.html">recent posts/events</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/upcomingevents.html">upcoming activities/eventsBlog Details</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/vlogs.html">vlogs</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:5504/intevertions.html">Interventions</a>
+                                                     <ul class="submenu">
+                                                        <li><a href="http://127.0.0.1:5504/outreaches.html">Outreaches</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/partnership.html">Partnership</a></li>
+                                                        <li><a href="http://127.0.0.1:5504/mentorship.html">Mentorship</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="events.html">Activities </a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <!-- Header-btn -->
+                                    <!-- <div class="header-right-btn d-none d-lg-block ml-20">
+                                        <a href="contact.html" class="btn header-btn">Donate</a>
+                                    </div> -->
+                                </div>
+                            </div> 
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+  <main class="wrap" id="mentorApp">
+    <section class="hero">
+      <div>
+        <h1>Guiding the Next Generation</h1>
+        <p>Through mentorship, Ayarhep connects experienced leaders with youth, women, and community changemakers. We foster knowledge, skills, and confidence that lasts a lifetime.</p>
+      </div>
+      <svg viewBox="0 0 300 200"><circle cx="100" cy="100" r="80" fill="url(#grad)" opacity="0.06"/><defs><linearGradient id="grad" x1="0" x2="1"><stop offset="0" stop-color="#e63946"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs></svg>
+    </section>
+
+    <section class="tracks">
+      <div class="track"><h3>Youth Mentorship</h3><p>Guiding young leaders through career choices, education, and life skills.</p></div>
+      <div class="track"><h3>Women Empowerment</h3><p>Supporting women in entrepreneurship, leadership, and community impact.</p></div>
+      <div class="track"><h3>Emotional and Psychosocial Support</h3><p>Equipping mentees with digital skills and innovation mindsets.</p></div>
+      <div class="track"><h3>Leadership Development</h3><p>Building tomorrow’s leaders through strategic mentorship and coaching.</p></div>
+    </section>
+
+    <section class="spotlight">
+      <h2>Mentor Spotlight</h2>
+      <div class="carousel" id="mentorCarousel">
+        <div class="mentor"><img src="assets/img/gallery/IMG_7315.JPG" alt="Mentor"><h4>Grace Muthoni</h4><p>Leadership Coach • 10 yrs guiding youth leaders.</p></div>
+        <div class="mentor"><img src="assets/img/gallery/Screenshot from 2025-09-16 05-05-48.png" alt="Mentor"><h4>Richard</h4><p>Leadership Coach • 10 yrs guiding youth leaders.</p></div>
+        <div class="mentor"><img src="assets/img/blog/single_blog_5.jpg" alt="Mentor"><h4>Jerop Limo</h4><p>Women’s Advocate • Empowers women entrepreneurs.</p></div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><div class="num" id="mentees">0</div><div class="label">Mentees</div></div>
+      <div class="stat"><div class="num" id="sessions">0</div><div class="label">Sessions Held</div></div>
+      <div class="stat"><div class="num" id="stories">0</div><div class="label">Success Stories</div></div>
+    </section>
+
+    <section class="form">
+      <h2>Become a Mentee</h2>
+      <form id="signupForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <label for="track">Preferred Track</label>
+        <select id="track" required>
+          <option value="">Select...</option>
+          <option>Youth Mentorship</option>
+          <option>Women Empowerment</option>
+          <option>Tech & Innovation</option>
+          <option>Leadership Development</option>
+        </select>
+        <label for="goals">Your Goals</label>
+        <textarea id="goals" rows="4"></textarea>
+        <button type="submit">Submit</button>
+        <div class="msg" id="formMsg"></div>
+      </form>
+    </section>
+  </main>
+    <footer>
+        <div class="footer-wrapper section-bg2" data-background="">
+            <!-- Footer Top-->
+            <div class="footer-area footer-padding">
+                <div class="container">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <div class="footer-tittle">
+                                    <div class="footer-logo mb-20">
+                                        <a href="index.html"><img src="assets/img/logo/logo.JPG" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Contact Info</h4>
+                                    <ul>
+                                        <li>
+                                            <p>Komarock</p>
+                                        </li>
+                                        <li><a href="#">Phone : +25722390634</a></li>
+                                        <li><a href="#">Email :</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Important Link</h4>
+                                    <ul>
+                                        <li><a href="#"> View Project</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Testimonial</a></li>
+                                        <li><a href="#">Proparties</a></li>
+                                        <li><a href="#">Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Newsletter</h4>
+                                    <div class="footer-pera footer-pera2">
+                                    <p>...............</p>
+                                </div>
+                                <!-- Form -->
+                                <div class="footer-form" >
+                                    <div id="mc_embed_signup">
+                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                        method="get" class="subscribe_form relative mail_part">
+                                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                            class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = ' Email Address '">
+                                            <div class="form-icon">
+                                                <button type="submit" name="submit" id="newsletter-submit"
+                                                class="email_icon newsletter-submit button-contactForm"><img src="assets/img/gallery/form.png" alt=""></button>
+                                            </div>
+                                            <div class="mt-10 info"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer-bottom -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-xl-10 col-lg-9 ">
+                                <div class="footer-copy-right">
+                                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="ht.com" target="_blank"></a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-3">
+                                <div class="footer-social f-right">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a  href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fas fa-globe"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS here -->
+
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="./assets/js/jquery.barfiller.js"></script>
+    
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.countdown.min.js"></script>
+    <script src="./assets/js/hover-direction-snake.min.js"></script>
+
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+  <script>
+    // Animated counters
+    function animateValue(id, end, duration){
+      const el=document.getElementById(id);let start=0;const step=Math.ceil(end/(duration/16));
+      function update(){start+=step;if(start>=end){el.textContent=end;return}else{el.textContent=start;requestAnimationFrame(update)}}update()}
+    animateValue('mentees',320,1000);animateValue('sessions',85,1000);animateValue('stories',42,1000);
+
+    // Form validation
+    document.getElementById('signupForm').addEventListener('submit',function(e){
+      e.preventDefault();const msg=document.getElementById('formMsg');msg.style.display='block';msg.style.color='#1dff89';msg.textContent='✔ Thank you! We will contact you soon.';this.reset();});
+  </script>
+</body>
+</html>
