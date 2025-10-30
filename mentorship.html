@@ -238,26 +238,33 @@
     </section>
 
     <section class="form">
-      <h2>Become a Mentee</h2>
-      <form id="signupForm">
-        <label for="name">Name</label>
-        <input type="text" id="name" required>
-        <label for="email">Email</label>
-        <input type="email" id="email" required>
-        <label for="track">Preferred Track</label>
-        <select id="track" required>
-          <option value="">Select...</option>
-          <option>Youth Mentorship</option>
-          <option>Women Empowerment</option>
-          <option>Tech & Innovation</option>
-          <option>Leadership Development</option>
-        </select>
-        <label for="goals">Your Goals</label>
-        <textarea id="goals" rows="4"></textarea>
-        <button type="submit">Submit</button>
-        <div class="msg" id="formMsg"></div>
-      </form>
-    </section>
+  <h2>Become a Mentee</h2>
+  <form action="https://api.web3forms.com/submit" method="POST">
+    <!-- 🔑 Your Web3Forms access key -->
+    <input type="hidden" name="access_key" value="8bff2479-61e0-4fac-bc6f-c08224b21f4c">
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="track">Preferred Track</label>
+    <select id="track" name="track" required>
+      <option value="">Select...</option>
+      <option>Youth Mentorship</option>
+      <option>Women Empowerment</option>
+      <option>Tech & Innovation</option>
+      <option>Leadership Development</option>
+    </select>
+
+    <label for="goals">Your Goals</label>
+    <textarea id="goals" name="goals" rows="4"></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
   </main>
     <footer>
         <div class="footer-wrapper section-bg2" data-background="">
